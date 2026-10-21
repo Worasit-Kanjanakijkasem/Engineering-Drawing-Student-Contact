@@ -120,6 +120,19 @@
       sectionSelect.appendChild(option);
     });
   });
+  document.getElementById("contactForm").addEventListener("submit", function (event) {
+    const form = this;
+    const button = form.querySelector('button[type="submit"]');
+
+    if (form.dataset.submitting === "true") {
+        event.preventDefault();
+        return;
+    }
+
+    form.dataset.submitting = "true";
+    button.disabled = true;
+    button.textContent = "Sending...";
+  });
   </script>
   </div>
 </body>
