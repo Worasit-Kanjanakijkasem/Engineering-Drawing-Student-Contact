@@ -58,10 +58,10 @@
 
   <p id="status">Please sign in.</p>
 
-<form id="contactForm" hidden>
+<form id="contactForm" method="POST" action="https://script.google.com/macros/s/AKfycbzSvAIbNB2JSSNC2JGMGJL5gjB07bS_CcfuYpxWWedx8wJw5BymIvd7Mo8_MdR4U29x/exec" hidden>
   <p>
     <label for="courseCode">Course</label>
-    <select id="courseCode" required>
+    <select id="courseCode" name="courseCode" required>
       <option value="">Select course</option>
       <option value="50310164">50310164</option>
       <option value="50310169">50310169</option>
@@ -70,28 +70,30 @@
 
   <p>
     <label for="section">Section</label>
-    <select id="section" required>
+    <select id="section" name="section" required>
       <option value="">Select section</option>
     </select>
   </p>
 
   <p>
     <label for="subject">Subject</label>
-    <input id="subject" type="text" maxlength="200" required>
+    <input id="subject" name="subject" type="text" maxlength="200" required>
   </p>
 
   <p>
     <label for="message">Message</label>
-    <textarea id="message" maxlength="5000" required
-          style="width: 500px; max-width: 90vw; height: 180px; box-sizing: border-box; resize: vertical;"></textarea>
+    <textarea id="message" name="message" maxlength="5000" required
+      style="width: 500px; max-width: 90vw; height: 180px; box-sizing: border-box; resize: vertical;"></textarea>
   </p>
 
+  <input type="hidden" id="idToken" name="idToken">
   <button type="submit">Send message</button>
 </form>
 
   <script>
     function handleCredentialResponse(response) {
       window.studentIdToken = response.credential;
+      document.getElementById("idToken").value = response.credential;
 
       document.getElementById("status").textContent =
         "Google Sign-In completed. Please complete the form.";
