@@ -60,22 +60,6 @@
 
 <form id="contactForm" method="POST" action="https://script.google.com/macros/s/AKfycbzSvAIbNB2JSSNC2JGMGJL5gjB07bS_CcfuYpxWWedx8wJw5BymIvd7Mo8_MdR4U29x/exec" hidden>
   <p>
-    <label for="courseCode">Course</label>
-    <select id="courseCode" name="courseCode" required>
-      <option value="">Select course</option>
-      <option value="50310164">50310164</option>
-      <option value="50310169">50310169</option>
-    </select>
-  </p>
-
-  <p>
-    <label for="section">Section</label>
-    <select id="section" name="section" required>
-      <option value="">Select section</option>
-    </select>
-  </p>
-
-  <p>
     <label for="category">Category</label>
     <select id="category" name="category" required>
       <option value="">Select category</option>
@@ -109,26 +93,6 @@
 
       document.getElementById("contactForm").hidden = false;
     }
-    const COURSE_SECTIONS = {
-      "50310164": ["1", "2", "3"],
-      "50310169": ["1", "2"]
-    };
-
-  document.getElementById("courseCode").addEventListener("change", function () {
-    const courseCode = this.value;
-    const sectionSelect = document.getElementById("section");
-
-    sectionSelect.innerHTML = '<option value="">Select section</option>';
-
-    const sections = COURSE_SECTIONS[courseCode] || [];
-
-    sections.forEach(function (section) {
-      const option = document.createElement("option");
-      option.value = section;
-      option.textContent = section;
-      sectionSelect.appendChild(option);
-    });
-  });
   document.getElementById("contactForm").addEventListener("submit", function (event) {
     const form = this;
     const button = form.querySelector('button[type="submit"]');
